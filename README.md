@@ -1,14 +1,14 @@
 # jekyll-mb
 
-"jekyll-mb" stands for "Jekyll Modern Business" and contains my files for a jekyll layout style using modern business.
+"jekyll-mb" stands for "Jekyll Modern Business" and contains files for a jekyll layout style using modern business.
 
 I use the style on several of my webpages, if you want to see an example, please go to
 
-	www.tt-schiri.de
+<www.tt-schiri.de>
 
 ## Usage
 
-Usage is not as simple as I hope, because jekyll does not provid easy means to separate the layout from the content.
+Usage is not as simple as I hope, because jekyll does not provide easy (or any) means to separate the layout from the content.
 Furthermore, layout separation of overall and specific definitions is not supported as well.
 
 In order to use the style you have two options:
@@ -23,7 +23,7 @@ Using the second option provides this ability, but, depending on your operating 
 
 - Ekkart Kleinod
 	- github: [ekleinod](https://github.com/ekleinod)
-	- E-Mail: <schiri@ekkart.de>
+	- E-Mail: <ekleinod@edgesoft.de>
 - Tobias Kantusch
 	- github: [tkantusch](https://github.com/tkantusch)
 	- E-Mail: <tobiaskantusch@online.de>
@@ -33,8 +33,8 @@ Using the second option provides this ability, but, depending on your operating 
 - Jekyll
 	- static website generator
 	- <https://jekyllrb.com/>
-- Modern Business Template
-	- bootstrap tTemplate
+- Modern Business template
+	- bootstrap template
 	- <https://github.com/BlackrockDigital/startbootstrap-modern-business.git>
 - Bootstrap
 	- framework for responsive websites
