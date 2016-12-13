@@ -4,7 +4,7 @@
 
 I use the style on several of my webpages, if you want to see an example, please go to
 
-<www.tt-schiri.de>
+http://www.tt-schiri.de/
 
 ## Usage
 
