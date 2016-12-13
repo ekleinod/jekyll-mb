@@ -1,5 +1,14 @@
 {% capture output %}
 {% comment %}
+	Creates a link.
+
+	usage (all parameters are optional)
+
+	{% include link.html target='<target>' title='<title>' %}
+
+{% endcomment %}
+
+{% comment %}
 	process arguments, fill missing information
 {% endcomment %}
 
@@ -30,5 +39,4 @@
 	output link
 {% endcomment %}
 [{{link_title}}]({{link_target}})
-{% endcapture %}
-{{ output | strip }}
+{% endcapture %}{{ output | strip }}

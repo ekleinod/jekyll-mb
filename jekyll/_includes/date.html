@@ -1,5 +1,14 @@
 {% capture output %}
 {% comment %}
+	Creates German formatted date.
+
+	usage (style parameter is optional)
+
+	{% include date.html date='<date>' style='<long|full>' %}
+
+{% endcomment %}
+
+{% comment %}
 	process arguments, fill missing information
 {% endcomment %}
 

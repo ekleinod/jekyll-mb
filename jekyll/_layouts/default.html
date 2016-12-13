@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.locale }}">
 
 	{% include head.html %}
 
 	<body>
 
-		{% include nav.html %}
+		{% include navbar.html %}
 
 		{% include sidebar.html %}
 
@@ -13,14 +13,14 @@
 
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">{% if page.title == "Startseite" %}{{ site.title }}{% else %}{{ page.title }}{% endif %}
+					<h1 class="page-header">{% if page.title == site.data.i18n.locales[site.locale].index %}{{ site.title }}{% else %}{{ page.title }}{% endif %}
 						{% if page.description %}<small>{{ page.description }}</small>{% endif %}
 					</h1>
 					{% include breadcrumb.html %}
 				</div>
 			</div>
 
-			{% include image.html %}
+			{% include header_image.html %}
 
 			{{ content }}
 
@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<p>
-							Letzte Änderung: {% include date.html date=page.date %},
+							site.data.i18n.locales[site.locale].last_change: {% include date.html date=page.date %},
 							{% if page.author %}{{ site.data.authors[page.author].name }}{% else %}{{ site.data.authors[site.author].name }}{% endif %}
 						</p>
 					</div>
@@ -45,7 +45,10 @@
 		<!-- Bootstrap Core JavaScript -->
 		<script src="{{ '/js/bootstrap-3.3.6.min.js' | prepend: site.baseurl }}"></script>
 
-		<!-- Eigenes JS -->
+		<!-- Jekyll-mb JS -->
+		<script src="{{ '/js/jekyll-mb.js' | prepend: site.baseurl }}"></script>
+
+		<!-- Local JS -->
 		<script src="{{ '/js/local.js' | prepend: site.baseurl }}"></script>
 
 	</body>

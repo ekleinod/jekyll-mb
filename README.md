@@ -25,7 +25,23 @@ You have to decide if you want to link directories or files, this depends on you
 
 ### Includes
 
-Includes, that (maybe) ease your life:
+Includes, that (maybe) ease your life.
+
+#### date
+
+Creates German formatted date.
+
+usage (style parameter is optional)
+
+	{% include date.html date='<date>' style='<long|full>' %}
+
+#### download
+
+Creates link to file download from download folder.
+
+usage (all parameters are optional)
+
+	{% include download.html file='<file>' title='<title>' %}
 
 #### img
 
@@ -35,13 +51,14 @@ usage (all parameters are optional)
 
 	{% include img.html src='<src>' title='<title>' alt='<alt>' align='<right|left|empty>' width='<width>' height='height' %}
 
-#### download
+#### link
 
-Creates link to file download from download folder.
+Creates a link.
 
 usage (all parameters are optional)
 
-	{% include download.html file='<src>' title='<title>' %}
+	{% include link.html target='<target>' title='<title>' %}
+
 
 
 ### Scripts
