@@ -1,0 +1,9 @@
+{% if page.image %}
+	<!-- Image Header -->
+	<div class="row">
+			<div class="col-lg-12">
+					<img class="img-responsive" src="{{ page.image | prepend: '/' | prepend: site.dir_img | prepend: site.baseurl }}" alt="Bild für {{ page.title }}">
+			</div>
+	</div>
+	<hr />
+{% endif %}

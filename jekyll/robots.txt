@@ -1,0 +1,5 @@
+# allow crawler to whole site, give sitemap
+
+User-agent: *
+Disallow:
+Sitemap: http://www.tt-schiri.de/sitemap.xml

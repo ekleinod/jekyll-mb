@@ -1,0 +1,34 @@
+{% capture output %}
+{% comment %}
+	process arguments, fill missing information
+{% endcomment %}
+
+{% comment %}
+	target
+{% endcomment %}
+	{% if include.target %}
+		{% assign link_target = include.target %}
+	{% else %}
+		{% assign link_target = site.baseurl | prepend: site.url %}
+	{% endif %}
+	{% if link_target contains '//' %}
+	{% else %}
+		{% assign link_target = link_target | prepend: site.baseurl %}
+	{% endif %}
+
+
+{% comment %}
+	title
+{% endcomment %}
+	{% if include.title %}
+		{% assign link_title = include.title %}
+	{% else %}
+		{% assign link_title = '...' %}
+	{% endif %}
+
+{% comment %}
+	output link
+{% endcomment %}
+[{{link_title}}]({{link_target}})
+{% endcapture %}
+{{ output | strip }}

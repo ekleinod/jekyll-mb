@@ -17,7 +17,11 @@ In order to use the style you have two options:
 2. link the contents in your jekyll directory
 
 Using the first option you will loose the ability to automatically update your pages after an update of the style.
+
 Using the second option provides this ability, but, depending on your operating system, links can be hard to maintain over the years.
+In order for this to work in the generated pages, the *build* and *server* script are using the *production* environment of jekyll.
+
+You have to decide if you want to link directories or files, this depends on your use case, and on your choice to make local modifications to files.
 
 ### Scripts
 
@@ -69,6 +73,12 @@ Now use the scripts as follows:
 - jQuery
 	- JavaScript library
 	- <https://jquery.com/>
+
+All relevant files are copied in *jekyll-mb*.
+This has two reasons:
+
+1. I can test locally without internet connection.
+2. The published site maintains all dependencies, thus no strange cookies are set etc.
 
 ## Git-Repository
 

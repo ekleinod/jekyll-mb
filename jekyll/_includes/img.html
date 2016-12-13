@@ -1,0 +1,87 @@
+{% capture output %}
+{% comment %}
+	process arguments, fill missing information
+{% endcomment %}
+
+{% comment %}
+	src
+{% endcomment %}
+	{% if include.src %}
+		{% assign img_src = include.src %}
+	{% else %}
+		{% assign img_src = 'http://placekitten.com/100/150' %}
+	{% endif %}
+	{% if img_src contains '//' %}
+	{% else %}
+		{% assign img_src = img_src | prepend: '/' | prepend: site.dir_img | prepend: site.baseurl %}
+	{% endif %}
+
+
+{% comment %}
+	alt/title
+{% endcomment %}
+	{% if include.alt %}
+		{% assign img_alt = include.alt %}
+	{% else %}
+		{% assign img_alt = '' %}
+	{% endif %}
+
+	{% if include.title %}
+		{% assign img_title = include.title %}
+	{% else %}
+		{% assign img_title = '' %}
+	{% endif %}
+
+	{% if img_alt != '' and img_title == '' %}
+		{% assign img_title = img_alt %}
+	{% endif %}
+	{% if img_title != '' and img_alt == '' %}
+		{% assign img_alt = img_title %}
+	{% endif %}
+
+	{% if img_title != '' %}
+		{% assign img_title = img_title | prepend: ' "' | append: '"' %}
+	{% endif %}
+
+
+{% comment %}
+	alignment
+{% endcomment %}
+	{% if include.align %}
+		{% assign img_align = include.align %}
+	{% else %}
+		{% assign img_align = '' %}
+	{% endif %}
+	{% if img_align != '' %}
+		{% assign img_align = img_align | prepend: ' pull-' %}
+	{% endif %}
+	{% assign img_align = img_align | prepend: 'img-rounded' %}
+
+
+{% comment %}
+	width/height
+{% endcomment %}
+	{% if include.width %}
+		{% assign img_width = include.width %}
+	{% else %}
+		{% assign img_width = '' %}
+	{% endif %}
+	{% if img_width != '' %}
+		{% assign img_width = img_width | prepend: ' width="' | append: '"' %}
+	{% endif %}
+	{% if include.height %}
+		{% assign img_height = include.height %}
+	{% else %}
+		{% assign img_height = '' %}
+	{% endif %}
+	{% if img_height != '' %}
+		{% assign img_height = img_height | prepend: ' height="' | append: '"' %}
+	{% endif %}
+
+
+{% comment %}
+	output image
+{% endcomment %}
+![{{img_alt}}]({{img_src}}{{img_title}}){:class="{{img_align}}"{{img_width}}{{img_height}}}
+{% endcapture %}
+{{ output | strip }}

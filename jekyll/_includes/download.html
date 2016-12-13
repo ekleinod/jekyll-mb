@@ -1,0 +1,33 @@
+{% capture output %}
+{% comment %}
+	process arguments, fill missing information
+{% endcomment %}
+
+{% comment %}
+	file
+{% endcomment %}
+	{% if include.file %}
+		{% assign dl_file = include.file %}
+	{% else %}
+		{% assign dl_file = site.baseurl | prepend: site.url %}
+	{% endif %}
+	{% if dl_file contains '//' %}
+	{% else %}
+		{% assign dl_file = dl_file | prepend: '/' | prepend: site.dir_downloads | prepend: site.baseurl %}
+	{% endif %}
+
+{% comment %}
+	title
+{% endcomment %}
+	{% if include.title %}
+		{% assign dl_title = include.title %}
+	{% else %}
+		{% assign dl_title = '...' %}
+	{% endif %}
+
+{% comment %}
+	output link
+{% endcomment %}
+[{{dl_title}}]({{dl_file}})
+{% endcapture %}
+{{ output | strip }}
