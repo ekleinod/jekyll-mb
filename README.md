@@ -59,6 +59,13 @@ usage (all parameters are optional)
 
 	{% include link.html target='<target>' title='<title>' %}
 
+#### pagenav
+
+Generates page navigation with all subpages.
+
+usage
+
+	{% include pagenav.html subdir=page.url %}
 
 
 ### Scripts
