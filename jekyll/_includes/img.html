@@ -1,5 +1,14 @@
 {% capture output %}
 {% comment %}
+	Creates link to image in image folder.
+
+	usage (all parameters are optional)
+
+	{% include img.html src='<src>' title='<title>' alt='<alt>' align='<right|left|empty>' width='<width>' height='height' %}
+
+{% endcomment %}
+
+{% comment %}
 	process arguments, fill missing information
 {% endcomment %}
 
@@ -83,5 +92,4 @@
 	output image
 {% endcomment %}
 ![{{img_alt}}]({{img_src}}{{img_title}}){:class="{{img_align}}"{{img_width}}{{img_height}}}
-{% endcapture %}
-{{ output | strip }}
+{% endcapture %}{{ output | strip }}

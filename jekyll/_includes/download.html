@@ -1,5 +1,14 @@
 {% capture output %}
 {% comment %}
+	Creates link to file download from download folder.
+
+	usage (all parameters are optional)
+
+	{% include download.html file='<src>' title='<title>' %}
+
+{% endcomment %}
+
+{% comment %}
 	process arguments, fill missing information
 {% endcomment %}
 
@@ -29,5 +38,4 @@
 	output link
 {% endcomment %}
 [{{dl_title}}]({{dl_file}})
-{% endcapture %}
-{{ output | strip }}
+{% endcapture %}{{ output | strip }}

@@ -1,0 +1,87 @@
+# Copyright 2016-2016 Ekkart Kleinod <ekleinod@edgesoft.de>
+
+# The files are distributed under the terms of the GNU Lesser General Public License.
+
+# See COPYING and COPYING.LESSER for details.
+
+# This file is part of jekyll-mb.
+
+# jekyll-mb is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# jekyll-mb is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License
+# along with jekyll-mb.  If not, see <http://www.gnu.org/licenses/>.
+
+# edit here
+
+# website information
+title: ""
+subtitle: ""
+description: ""
+
+# url is the full website URL
+url: "http://www.tt-schiri.de"
+
+# baseurl is the website's URL without the hostname
+baseurl: ""
+
+# default author (list of authors: _data/authors.yml)
+author: ek
+
+# default locale (for the use of localized texts see _data/i18n.yml)
+locale: "de"
+
+# generation into destination dir instead of _site
+destination: "../htdocs"
+
+# downloads directory
+dir_downloads: "/downloads"
+
+# image directory
+dir_img: "/img"
+
+# include these files in production site
+#include:
+#  - ".htaccess"
+
+# Exclude these files from production site
+#exclude:
+#  - "LICENSE-THEME"
+
+
+# edit here only if you know what you are doing :)
+
+# defaults for all pages
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "page"
+      breadcrumb: false
+
+# collection of pages - use pages subfolder for pages
+collections:
+  pages:
+    output: true
+    permalink: /:path.html
+
+# markdown converter
+markdown: kramdown
+
+# syntax highlighter
+highlighter: rouge
+
+# use the following gems
+gems:
+  - jekyll-sitemap
+
+# encoding
+encoding: "utf-8"

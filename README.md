@@ -23,6 +23,25 @@ In order for this to work in the generated pages, the *build* and *server* scrip
 
 You have to decide if you want to link directories or files, this depends on your use case, and on your choice to make local modifications to files.
 
+### Includes
+
+Includes, that (maybe) ease your life:
+
+- img
+	Creates link to image in image folder.
+
+	usage (all parameters are optional)
+
+	{% include img.html src='<src>' title='<title>' alt='<alt>' align='<right|left|empty>' width='<width>' height='height' %}
+
+- download
+	Creates link to file download from download folder.
+
+	usage (all parameters are optional)
+
+	{% include download.html file='<src>' title='<title>' %}
+
+
 ### Scripts
 
 The scripts rely on the jekyll site being placed in a folder named `jekyll` directly below the place of script calling.
