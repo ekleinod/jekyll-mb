@@ -27,17 +27,19 @@ You have to decide if you want to link directories or files, this depends on you
 
 Includes, that (maybe) ease your life:
 
-- img
-	Creates link to image in image folder.
+#### img
 
-	usage (all parameters are optional)
+Creates link to image in image folder.
+
+usage (all parameters are optional)
 
 	{% include img.html src='<src>' title='<title>' alt='<alt>' align='<right|left|empty>' width='<width>' height='height' %}
 
-- download
-	Creates link to file download from download folder.
+#### download
 
-	usage (all parameters are optional)
+Creates link to file download from download folder.
+
+usage (all parameters are optional)
 
 	{% include download.html file='<src>' title='<title>' %}
 
