@@ -19,6 +19,30 @@ In order to use the style you have two options:
 Using the first option you will loose the ability to automatically update your pages after an update of the style.
 Using the second option provides this ability, but, depending on your operating system, links can be hard to maintain over the years.
 
+### Scripts
+
+The scripts rely on the jekyll site being placed in a folder named `jekyll` directly below the place of script calling.
+
+Example:
+
+	build.sh
+	server.sh
+	jekyll/...
+
+If you choose to use this layout, you only have to link the scripts to your folder and use them directly.
+
+If you use another directory structure, you can give your directory as parameter to the script.
+
+Example:
+
+	build.sh
+	server.sh
+	myfolder/...
+
+Now use the scripts as follows:
+
+	$> build.sh myfolder
+
 ## Authors
 
 - Ekkart Kleinod
