@@ -26,10 +26,10 @@ title: ""
 subtitle: ""
 description: ""
 
-# url is the full website URL
-url: "http://www.tt-schiri.de"
+# url is the full website URL (e.g. "http://www.tt-schiri.de")
+url: ""
 
-# baseurl is the website's URL without the hostname
+# baseurl is the website's URL without the hostname (e.g. "/subfolder")
 baseurl: ""
 
 # default author (list of authors: _data/authors.yml)

@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<p>
-							site.data.i18n.locales[site.locale].last_change: {% include date.html date=page.date %},
+							{{ site.data.i18n.locales[site.locale].last_change}}: {% include date.html date=page.date %},
 							{% if page.author %}{{ site.data.authors[page.author].name }}{% else %}{{ site.data.authors[site.author].name }}{% endif %}
 						</p>
 					</div>
