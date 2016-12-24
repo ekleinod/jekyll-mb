@@ -1,0 +1,75 @@
+{% comment %}
+Code inspired by https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-your-jekyll-based-github-pages/
+
+=======================
+The following part extracts all the tags from your posts and sort tags, so that you do not need to manually collect your tags to a place.
+=======================
+{% endcomment %}
+{% assign rawtags = "" %}
+{% for post in site.posts %}
+	{% assign ttags = post.tags | join:'|' | append:'|' %}
+	{% assign rawtags = rawtags | append:ttags %}
+{% endfor %}
+{% assign rawtags = rawtags | split:'|' | sort %}
+
+{% comment %}
+=======================
+The following part removes duplicated tags and invalid tags like blank tag.
+=======================
+{% endcomment %}
+{% assign tags = "" %}
+{% for tag in rawtags %}
+	{% if tag != "" %}
+		{% if tags == "" %}
+			{% assign tags = tag | split:'|' %}
+		{% endif %}
+		{% unless tags contains tag %}
+			{% assign tags = tags | join:'|' | append:'|' | append:tag | split:'|' %}
+		{% endunless %}
+	{% endif %}
+{% endfor %}
+
+{% comment %}
+=======================
+The purpose of this snippet is to list all the tags you have in your site.
+=======================
+{% endcomment %}
+
+<div class="well">
+	<h4>{{ site.data.i18n.locales[site.locale].tags }}</h4>
+
+	{% if site.sidebar_tags_columns %}
+
+		<div class="row">
+			<div class="col-lg-6">
+				<ul class="list-unstyled">
+					{% for tag in tags %}
+						{% assign show = forloop.index0 | modulo: 2 %}
+						{% if show == 0 %}
+							<li><a href="#{{ tag | slugify }}"> {{ tag }} </a></li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-lg-6">
+				<ul class="list-unstyled">
+					{% for tag in tags %}
+						{% assign show = forloop.index0 | modulo: 2 %}
+						{% if show == 1 %}
+							<li><a href="#{{ tag | slugify }}"> {{ tag }} </a></li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+	{% else %}
+
+		|
+		{% for tag in tags %}
+			<a href="#{{ tag | slugify }}"> {{ tag }} </a> |
+		{% endfor %}
+
+	{% endif %}
+
+</div>

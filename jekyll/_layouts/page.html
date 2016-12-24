@@ -3,7 +3,18 @@ layout: default
 ---
 
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-8">
 		{{ content }}
+	</div>
+	<div class="col-lg-4">
+
+		{% include well_search.html %}
+
+		{% include well_toc.html %}
+
+		{% include well_categories.html %}
+
+		{% include well_tags.html %}
+
 	</div>
 </div>
