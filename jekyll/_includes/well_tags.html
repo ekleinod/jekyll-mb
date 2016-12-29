@@ -38,7 +38,7 @@ The purpose of this snippet is to list all the tags you have in your site.
 <div class="well">
 	<h4>{{ site.data.i18n.locales[site.locale].tags }}</h4>
 
-	{% if site.sidebar_tags_columns %}
+	{% if include.columns or ((include.columns == nil) and site.sidebar_tags_columns) %}
 
 		<div class="row">
 			<div class="col-lg-6">
