@@ -60,8 +60,10 @@
 		{% assign date_out = date_out | append: month %}
 		{% assign temp = include.date | date: ' %Y' %}
 		{% assign date_out = date_out | append: temp %}
+	{% when 'short' %}
+		{% assign date_out = include.date | date: '%-d.%-m.%Y' %}
 	{% else %}
-		{% assign date_out = 'unbekanntes Datumformat' %}
+		{% assign date_out = 'unbekanntes Datumformat: ' | append: dl_style %}
 {% endcase %}
 
 

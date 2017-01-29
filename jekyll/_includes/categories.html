@@ -1,5 +1,5 @@
 {% comment %}
-Code inspired by https://codinfox.github.io/dev/2015/03/06/use-categories-and-categories-in-your-jekyll-based-github-pages/
+Code inspired by https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-your-jekyll-based-github-pages/
 
 =======================
 The following part extracts all the categories from your posts and sort categories, so that you do not need to manually collect your categories to a place.
@@ -35,8 +35,7 @@ The purpose of this snippet is to list all the categories you have in your site.
 =======================
 {% endcomment %}
 
-<div class="well">
-	<h4>{{ site.data.i18n.locales[site.locale].categories }}</h4>
+<div>
 
 	{% if include.columns or ((include.columns == nil) and site.sidebar_categories_columns) %}
 
@@ -46,7 +45,7 @@ The purpose of this snippet is to list all the categories you have in your site.
 					{% for category in categories %}
 						{% assign show = forloop.index0 | modulo: 2 %}
 						{% if show == 0 %}
-							<li><a href="#{{ category | slugify }}"> {{ category }} </a></li>
+							<li><a href="{{ category | slugify | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a></li>
 						{% endif %}
 					{% endfor %}
 				</ul>
@@ -56,7 +55,7 @@ The purpose of this snippet is to list all the categories you have in your site.
 					{% for category in categories %}
 						{% assign show = forloop.index0 | modulo: 2 %}
 						{% if show == 1 %}
-							<li><a href="#{{ category | slugify }}"> {{ category }} </a></li>
+							<li><a href="{{ category | slugify | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a></li>
 						{% endif %}
 					{% endfor %}
 				</ul>
@@ -67,7 +66,7 @@ The purpose of this snippet is to list all the categories you have in your site.
 
 		|
 		{% for category in categories %}
-			<a href="#{{ category | slugify }}"> {{ category }} </a> |
+			<a href="{{ category | slugify | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a> |
 		{% endfor %}
 
 	{% endif %}

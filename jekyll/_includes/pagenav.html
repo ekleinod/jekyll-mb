@@ -50,7 +50,7 @@
 		{% assign testurl = page.url | prepend: '/' %}
 
 		{% if testurl contains subdir %}
-<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+<li><a href="{{ page.url | prepend: site.baseurl  }}">{{ page.title }}</a></li>
 			{% if testurl contains '.html' %}
 			{% else %}
 <ul>
@@ -67,7 +67,7 @@
 					{% comment %}{{url_part}}{% endcomment %}
 				{% endfor %}
 			{% endfor %}
-<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+<li><a href="{{ page.url | prepend: site.baseurl  }}">{{ page.title }}</a></li>
 		{% endif %}
 	{% endfor %}
 

@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">{% if page.title == site.data.i18n.locales[site.locale].index %}{{ site.title }}{% else %}{{ page.title }}{% endif %}
-						{% if page.description %}<small>{{ page.description }}</small>{% endif %}
+						{% if page.subtitle %}<br /><small>{{ page.subtitle }}</small>{% endif %}
 					</h1>
 					{% include breadcrumb.html %}
 				</div>

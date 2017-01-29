@@ -8,13 +8,29 @@ layout: default
 	</div>
 	<div class="col-lg-4">
 
-		{% include well_search.html %}
+	<!--
+		<div class="well">
+			<h4>{{ site.data.i18n.locales[site.locale].search }}</h4>
+			{% include search.html %}
+		</div>
+	-->
 
-		{% include well_toc.html %}
+	<!--
+		<div class="well">
+			<h4>{{ site.data.i18n.locales[site.locale].toc }}</h4>
+			{% include toc.html %}
+		</div>
+	-->
 
-		{% include well_categories.html %}
+		<div class="well">
+			<h4>{{ site.data.i18n.locales[site.locale].categories }}</h4>
+			{% include categories.html %}
+		</div>
 
-		{% include well_tags.html %}
+		<div class="well">
+			<h4>{{ site.data.i18n.locales[site.locale].tags }}</h4>
+			{% include tags.html %}
+		</div>
 
 	</div>
 </div>
