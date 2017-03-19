@@ -53,6 +53,6 @@ fi
 BASEFOLDER=${4:-"htdocs"}
 
 # upload all files
-echo wput --timestamping --dont-continue --reupload $BASEFOLDER/* --basename=$BASEFOLDER/ ftp://$2:$3@$1/$BASEFOLDER/
+wput --timestamping --dont-continue --reupload $BASEFOLDER/* --basename=$BASEFOLDER/ ftp://$2:$3@$1/$BASEFOLDER/
 
 # EOF
