@@ -4,7 +4,7 @@
 # 	build
 # 	build yourfolder
 
-# Copyright 2016-2016 Ekkart Kleinod <ekleinod@edgesoft.de>
+# Copyright 2016-2017 Ekkart Kleinod <ekleinod@edgesoft.de>
 
 # The files are distributed under the terms of the GNU Lesser General Public License.
 
@@ -25,20 +25,14 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with jekyll-mb.  If not, see <http://www.gnu.org/licenses/>.
 
-# default jekyll folder
-JMB_JEKYLL_DIR=jekyll
-
-# jekyll folder as optional parameter
-if [ -n "$1" ]
-then
-	JMB_JEKYLL_DIR=$1
-fi
+# jekyll folder
+JMB_JEKYLL_DIR=${1:-"jekyll"}
 
 # clean jekyll files
-cd $JMB_JEKYLL_DIR
-jekyll clean
+echo cd $JMB_JEKYLL_DIR
+echo jekyll clean
 
 # build site
-JEKYLL_ENV=production jekyll build
+echo JEKYLL_ENV=production jekyll build
 
 # EOF

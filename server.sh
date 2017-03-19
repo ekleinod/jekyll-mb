@@ -4,7 +4,7 @@
 # 	server
 # 	server yourfolder
 
-# Copyright 2016-2016 Ekkart Kleinod <ekleinod@edgesoft.de>
+# Copyright 2016-2017 Ekkart Kleinod <ekleinod@edgesoft.de>
 
 # The files are distributed under the terms of the GNU Lesser General Public License.
 
@@ -26,13 +26,7 @@
 # along with jekyll-mb.  If not, see <http://www.gnu.org/licenses/>.
 
 # default jekyll folder
-JMB_JEKYLL_DIR=jekyll
-
-# jekyll folder as optional parameter
-if [ -n "$1" ]
-then
-	JMB_JEKYLL_DIR=$1
-fi
+JMB_JEKYLL_DIR=${1:-"jekyll"}
 
 # start server
 cd $JMB_JEKYLL_DIR
