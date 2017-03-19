@@ -29,10 +29,10 @@
 JMB_JEKYLL_DIR=${1:-"jekyll"}
 
 # clean jekyll files
-echo cd $JMB_JEKYLL_DIR
-echo jekyll clean
+cd $JMB_JEKYLL_DIR
+jekyll clean
 
 # build site
-echo JEKYLL_ENV=production jekyll build
+JEKYLL_ENV=production jekyll build
 
 # EOF
