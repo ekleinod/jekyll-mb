@@ -1,0 +1,77 @@
+{% comment %}
+	Generates page navigation with all subpages.
+
+	usage
+
+	{% include pagenav.html subdir=page.url %}
+
+{% endcomment %}
+
+{% comment %}
+	Generate subdir array for comparison of paths.
+{% endcomment %}
+{% assign subdir = include.subdir | prepend: '/' %}
+
+{% comment %}
+	Sort pages by url.
+{% endcomment %}
+{% assign pages_sorted = site.pages | sort: 'url' %}
+
+{% comment %}
+	Store pages for output.
+	There is no "startswith" in Liquid, "contains" could find url chunks within the url.
+	Therefore, for comparison we prepend the url and the subdir with "/", because no "//" should occur within an url.
+{% endcomment %}
+{% assign pages_out = '' | split: '' %}
+{% for page in pages_sorted %}
+	{% assign testurl = page.url | prepend: '/' %}
+	{% if page.hide-nav != true and testurl contains subdir %}
+		{% assign pages_out = pages_out | push: page %}
+	{% endif %}
+{% endfor %}
+
+{% comment %}
+	Start ul if there are pages for output.
+{% endcomment %}
+{% if pages_out.size > 0 %}
+
+<div class="alert alert-warning" role="alert"><small>Die Hierarchien sind noch nicht korrekt, aber wenigstens sind alle Seiten zu sehen.</small></div>
+
+<ul>
+	{% comment %}
+		Some variables for correct indentation.
+	{% endcomment %}
+	{% assign level = 0 %}
+
+	{% comment %}
+		Loop through output pages.
+	{% endcomment %}
+	{% for page in pages_out %}
+		{% assign testurl = page.url | prepend: '/' %}
+
+		{% if testurl contains subdir %}
+<li><a href="{{ page.url | prepend: site.baseurl  }}">{{ page.title }}</a></li>
+			{% if testurl contains '.html' %}
+			{% else %}
+<ul>
+				{% assign subdir = testurl %}
+				{% assign level = level | plus: 1 %}
+				{% comment %}{{ level }}{% endcomment %}
+			{% endif %}
+		{% else %}
+			{% assign tmpsubdir = subdir %}
+			{% assign tmplevel = level %}
+			{% for i in (1..tmplevel) reversed %}
+				{% assign arr_tmpsubdir = tmpsubdir | split: '/' %}
+				{% for url_part in arr_tmpsubdir %}
+					{% comment %}{{url_part}}{% endcomment %}
+				{% endfor %}
+			{% endfor %}
+<li><a href="{{ page.url | prepend: site.baseurl  }}">{{ page.title }}</a></li>
+		{% endif %}
+	{% endfor %}
+
+</ul>
+
+{% endif %}
+

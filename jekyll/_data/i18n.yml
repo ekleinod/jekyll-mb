@@ -1,0 +1,19 @@
+locales:
+  # English ---------------------------------------------
+  en: &DEFAULT_EN
+    header_image: "Image for"
+    index: "Homepage"
+    last_change: "Last change"
+  en_US:
+    <<: *DEFAULT_EN     # use en for en_US
+  en_UK:
+    <<: *DEFAULT_EN     # use en for en_UK
+
+  # German translations ---------------------------------
+  de: &DEFAULT_DE
+    <<: *DEFAULT_EN     # load English values as default
+    header_image: "Bild für"
+    index: "Startseite"
+    last_change: "Letzte Änderung"
+  de_DE:
+    <<: *DEFAULT_DE     # use de translation for de_DE

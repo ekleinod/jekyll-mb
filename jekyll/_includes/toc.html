@@ -1,0 +1,9 @@
+{% capture toccontent %}
+
+- TOC
+{:toc}
+
+{% endcapture %}
+{% assign toccontent_out = toccontent | markdownify | strip %}
+
+{{ toccontent_out }}
