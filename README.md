@@ -145,7 +145,7 @@ Additionally, the following branches my occur:
 
 The copyright is meant for all files of my origin, not the unmodified files of the used libraries, or templates.
 
-Copyright 2016-2016 Ekkart Kleinod <ekleinod@edgesoft.de>
+Copyright 2016-2017 Ekkart Kleinod <ekleinod@edgesoft.de>
 
 The files are distributed under the terms of the GNU Lesser General Public License.
 
