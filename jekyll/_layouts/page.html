@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<div class="row">
+	<div class="col-lg-8">
+		{{ content }}
+	</div>
+	<div class="col-lg-4">
+
+	<!--
+		<div class="well">
+			<h4>{{ site.data.i18n.locales[site.locale].search }}</h4>
+			{% include search.html %}
+		</div>
+	-->
+
+	<!--
+		<div class="well">
+			<h4>{{ site.data.i18n.locales[site.locale].toc }}</h4>
+			{% include toc.html %}
+		</div>
+	-->
+
+		<div class="well">
+			<h4>{{ site.data.i18n.locales[site.locale].categories }}</h4>
+			{% include categories.html %}
+		</div>
+
+		<div class="well">
+			<h4>{{ site.data.i18n.locales[site.locale].tags }}</h4>
+			{% include tags.html %}
+		</div>
+
+	</div>
+</div>

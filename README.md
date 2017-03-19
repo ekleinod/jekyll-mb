@@ -1,14 +1,14 @@
 # jekyll-mb
 
-"jekyll-mb" stands for "Jekyll Modern Business" and contains my files for a jekyll layout style using modern business.
+"jekyll-mb" stands for "Jekyll Modern Business" and contains files for a jekyll layout style using modern business.
 
 I use the style on several of my webpages, if you want to see an example, please go to
 
-	www.tt-schiri.de
+http://www.tt-schiri.de/
 
 ## Usage
 
-Usage is not as simple as I hope, because jekyll does not provid easy means to separate the layout from the content.
+Usage is not as simple as I hope, because jekyll does not provide easy (or any) means to separate the layout from the content.
 Furthermore, layout separation of overall and specific definitions is not supported as well.
 
 In order to use the style you have two options:
@@ -17,13 +17,86 @@ In order to use the style you have two options:
 2. link the contents in your jekyll directory
 
 Using the first option you will loose the ability to automatically update your pages after an update of the style.
+
 Using the second option provides this ability, but, depending on your operating system, links can be hard to maintain over the years.
+In order for this to work in the generated pages, the *build* and *server* script are using the *production* environment of jekyll.
+
+You have to decide if you want to link directories or files, this depends on your use case, and on your choice to make local modifications to files.
+
+### Includes
+
+Includes, that (maybe) ease your life.
+
+#### date
+
+Creates German formatted date.
+
+usage (style parameter is optional)
+
+	{% include date.html date='<date>' style='<long|full>' %}
+
+#### download
+
+Creates link to file download from download folder.
+
+usage (all parameters are optional)
+
+	{% include download.html file='<file>' title='<title>' %}
+
+#### img
+
+Creates link to image in image folder.
+
+usage (all parameters are optional)
+
+	{% include img.html src='<src>' title='<title>' alt='<alt>' align='<right|left|empty>' width='<width>' height='height' %}
+
+#### link
+
+Creates a link.
+
+usage (all parameters are optional)
+
+	{% include link.html target='<target>' title='<title>' %}
+
+#### pagenav
+
+Generates page navigation with all subpages.
+
+usage
+
+	{% include pagenav.html subdir=page.url %}
+
+
+### Scripts
+
+The scripts rely on the jekyll site being placed in a folder named `jekyll` directly below the place of script calling.
+
+Example:
+
+	build.sh
+	server.sh
+	jekyll/...
+
+If you choose to use this layout, you only have to link the scripts to your folder and use them directly.
+
+If you use another directory structure, you can give your directory as parameter to the script.
+
+Example:
+
+	build.sh
+	server.sh
+	myfolder/...
+
+Now use the scripts as follows:
+
+	$> build.sh myfolder
 
 ## Authors
 
 - Ekkart Kleinod
 	- github: [ekleinod](https://github.com/ekleinod)
-	- E-Mail: <schiri@ekkart.de>
+	- E-Mail: <ekleinod@edgesoft.de>
 - Tobias Kantusch
 	- github: [tkantusch](https://github.com/tkantusch)
 	- E-Mail: <tobiaskantusch@online.de>
@@ -33,8 +106,8 @@ Using the second option provides this ability, but, depending on your operating 
 - Jekyll
 	- static website generator
 	- <https://jekyllrb.com/>
-- Modern Business Template
-	- bootstrap tTemplate
+- Modern Business template
+	- bootstrap template
 	- <https://github.com/BlackrockDigital/startbootstrap-modern-business.git>
 - Bootstrap
 	- framework for responsive websites
@@ -45,6 +118,12 @@ Using the second option provides this ability, but, depending on your operating 
 - jQuery
 	- JavaScript library
 	- <https://jquery.com/>
+
+All relevant files are copied in *jekyll-mb*.
+This has two reasons:
+
+1. I can test locally without internet connection.
+2. The published site maintains all dependencies, thus no strange cookies are set etc.
 
 ## Git-Repository
 

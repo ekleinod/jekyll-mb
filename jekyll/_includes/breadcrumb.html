@@ -1,0 +1,6 @@
+{% if page.breadcrumb != false %}
+	<ol class="breadcrumb">
+		<li><a href="{{ site.baseurl | prepend: site.url }}/index.html">{{ site.data.i18n.locales[site.locale].index }}</a></li>
+		<li><a href='#'>todo</a></li>
+	</ol>
+{% endif %}

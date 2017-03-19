@@ -1,0 +1,71 @@
+{% capture output %}
+{% comment %}
+	Creates German formatted date.
+
+	usage (style parameter is optional)
+
+	{% include date.html date='<date>' style='<long|full>' %}
+
+{% endcomment %}
+
+{% comment %}
+	process arguments, fill missing information
+{% endcomment %}
+
+{% if include.style %}
+	{% assign dl_style = include.style %}
+{% else %}
+	{% assign dl_style = 'long' %}
+{% endif %}
+
+{% assign weekday_number = include.date | date: "%w" %}
+{% case weekday_number %}
+	{% when '0' %}{% assign weekday = 'Sonntag' %}
+	{% when '1' %}{% assign weekday = 'Montag' %}
+	{% when '2' %}{% assign weekday = 'Dienstag' %}
+	{% when '3' %}{% assign weekday = 'Mittwoch' %}
+	{% when '4' %}{% assign weekday = 'Donnerstag' %}
+	{% when '5' %}{% assign weekday = 'Freitag' %}
+	{% when '6' %}{% assign weekday = 'Sonnabend' %}
+{% endcase %}
+
+{% assign month_number = include.date | date: "%-m" %}
+{% case month_number %}
+	{% when '1' %}{% assign month = 'Januar' %}
+	{% when '2' %}{% assign month = 'Februar' %}
+	{% when '3' %}{% assign month = 'März' %}
+	{% when '4' %}{% assign month = 'April' %}
+	{% when '5' %}{% assign month = 'Mai' %}
+	{% when '6' %}{% assign month = 'Juni' %}
+	{% when '7' %}{% assign month = 'Juli' %}
+	{% when '8' %}{% assign month = 'August' %}
+	{% when '9' %}{% assign month = 'September' %}
+	{% when '10' %}{% assign month = 'Oktober' %}
+	{% when '11' %}{% assign month = 'November' %}
+	{% when '12' %}{% assign month = 'Dezember' %}
+{% endcase %}
+
+{% assign date_out = '' %}
+{% case dl_style %}
+	{% when 'long' %}
+		{% assign temp = include.date | date: '%-d. ' %}
+		{% assign date_out = date_out | append: temp %}
+		{% assign date_out = date_out | append: month %}
+		{% assign temp = include.date | date: ' %Y' %}
+		{% assign date_out = date_out | append: temp %}
+	{% when 'full' %}
+		{% assign date_out = weekday | append: ', ' %}
+		{% assign temp = include.date | date: '%-d. ' %}
+		{% assign date_out = date_out | append: temp %}
+		{% assign date_out = date_out | append: month %}
+		{% assign temp = include.date | date: ' %Y' %}
+		{% assign date_out = date_out | append: temp %}
+	{% when 'short' %}
+		{% assign date_out = include.date | date: '%-d.%-m.%Y' %}
+	{% else %}
+		{% assign date_out = 'unbekanntes Datumformat: ' | append: dl_style %}
+{% endcase %}
+
+
+{{ date_out }}
+{% endcapture %}{{ output | strip }}
