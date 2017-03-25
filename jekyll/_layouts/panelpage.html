@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<div class="row">
+	<div class="col-lg-12">
+		{{ content }}
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="col-lg-12">
+		<h3 class="page-header">{{ site.data.i18n.locales[site.locale].panels }}</h3>
+	</div>
+
+	<div class="col-md-6">
+	{% for navitem in site.data.navigation %}
+		{% if navitem.panelpage == true %}
+			<div class="media">
+				<div class="pull-left">
+					<a href="{{ navitem.href | prepend: site.baseurl }}"><span class="fa-stack fa-2x">
+						<i class="fa fa-circle fa-stack-2x text-primary"></i>
+						<i class="fa fa-{{ navitem.icon }} fa-stack-1x fa-inverse"></i>
+					</span></a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">{{ navitem.title }}</h4>
+					<p>{{ navitem.description | markdownify }}</p>
+					<p><a href="{{ navitem.href | prepend: site.baseurl }}">{{ site.data.i18n.locales[site.locale].continue }}</a></p>
+				</div>
+			</div>
+			{% endif %}
+	{% endfor %}
+	</div>
+</div>

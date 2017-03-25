@@ -1,9 +1,11 @@
 locales:
   # English ---------------------------------------------
   en: &DEFAULT_EN
+    continue: "Continue"
     header_image: "Image for"
     index: "Homepage"
     last_change: "Last change"
+    panels: "Quick Guide"
   en_US:
     <<: *DEFAULT_EN     # use en for en_US
   en_UK:
@@ -12,8 +14,10 @@ locales:
   # German translations ---------------------------------
   de: &DEFAULT_DE
     <<: *DEFAULT_EN     # load English values as default
+    continue: "Weiterlesen"
     header_image: "Bild für"
     index: "Startseite"
     last_change: "Letzte Änderung"
+    panels: "Schnelleinstieg"
   de_DE:
     <<: *DEFAULT_DE     # use de translation for de_DE
