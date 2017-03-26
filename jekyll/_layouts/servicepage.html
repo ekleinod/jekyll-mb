@@ -11,12 +11,12 @@ layout: default
 <div class="row">
 
 	<div class="col-lg-12">
-		<h3 class="page-header">{{ site.data.i18n.locales[site.locale].panels }}</h3>
+		<h3 class="page-header">{{ site.data.i18n.locales[site.locale].services }}</h3>
 	</div>
 
 	<div class="col-md-6">
 	{% for navitem in site.data.navigation %}
-		{% if navitem.panelpage == true %}
+		{% if navitem.servicepage == true %}
 			<div class="media">
 				<div class="pull-left">
 					<a href="{{ navitem.href | prepend: site.baseurl }}"><span class="fa-stack fa-2x">
