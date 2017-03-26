@@ -22,6 +22,9 @@ layout: default
 		</div>
 	-->
 
+	{% include get_categories.html %}
+	{{ categories }}
+
 		<div class="well">
 			<h4>{{ site.data.i18n.locales[site.locale].categories }}</h4>
 			{% include categories.html %}
