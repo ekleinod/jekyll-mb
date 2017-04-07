@@ -2,6 +2,28 @@
 layout: default
 ---
 
+{% comment %}
+
+Provides a service panel with three possible layouts:
+
+- panels (default)
+- tabs
+- list
+
+Layout type is defined in the front matter with:
+
+servicepage: <layout type>
+
+i.e.
+
+servicepage: panels
+servicepage: tabs
+servicepage: list
+
+{% endcomment %}
+
+{% assign layouttype = page.servicepage | default: 'panels' %}
+
 <div class="row">
 	<div class="col-lg-12">
 		{{ content }}
@@ -14,23 +36,54 @@ layout: default
 		<h3 class="page-header">{{ site.data.i18n.locales[site.locale].services }}</h3>
 	</div>
 
-	<div class="col-md-6">
-	{% for navitem in site.data.navigation %}
-		{% if navitem.servicepage == true %}
-			<div class="media">
-				<div class="pull-left">
-					<a href="{{ navitem.href | prepend: site.baseurl }}"><span class="fa-stack fa-2x">
-						<i class="fa fa-circle fa-stack-2x text-primary"></i>
-						<i class="fa fa-{{ navitem.icon }} fa-stack-1x fa-inverse"></i>
-					</span></a>
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading">{{ navitem.title }}</h4>
-					<p>{{ navitem.description | markdownify }}</p>
-					<p><a href="{{ navitem.href | prepend: site.baseurl }}">{{ site.data.i18n.locales[site.locale].continue }}</a></p>
-				</div>
+	{% case layouttype %}
+
+		{% when 'tabs' %}
+
+
+		{% when 'list' %}
+
+			<div class="col-md-6">
+				{% for navitem in site.data.navigation %}
+					{% if navitem.servicepage == true %}
+						<div class="media">
+							<div class="pull-left">
+								<a href="{{ navitem.href | prepend: site.baseurl }}"><span class="fa-stack fa-2x">
+									<i class="fa fa-circle fa-stack-2x text-primary"></i>
+									<i class="fa fa-{{ navitem.icon }} fa-stack-1x fa-inverse"></i>
+								</span></a>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading">{{ navitem.title }}</h4>
+								{{ navitem.description | markdownify }}
+								<p><a href="{{ navitem.href | prepend: site.baseurl }}">{{ site.data.i18n.locales[site.locale].continue }}</a></p>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
 			</div>
-			{% endif %}
-	{% endfor %}
-	</div>
+
+		{% else %}
+
+			{% for navitem in site.data.navigation %}
+				{% if navitem.servicepage == true %}
+					<div class="col-md-3 col-sm-6">
+						<div class="panel panel-default text-center">
+							<div class="panel-heading">
+								<a href="{{ navitem.href | prepend: site.baseurl }}"><span class="fa-stack fa-5x">
+									<i class="fa fa-circle fa-stack-2x text-primary"></i>
+									<i class="fa fa-{{ navitem.icon }} fa-stack-1x fa-inverse"></i>
+								</span></a>
+							</div>
+							<div class="panel-body">
+								<h4>{{ navitem.title }}</h4>
+								{{ navitem.description | markdownify }}
+								<a href="{{ navitem.href | prepend: site.baseurl }}" class="btn btn-primary">{{ site.data.i18n.locales[site.locale].continue }}</a>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+	{% endcase %}
 </div>
