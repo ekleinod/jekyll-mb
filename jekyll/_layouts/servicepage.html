@@ -40,6 +40,33 @@ servicepage: list
 
 		{% when 'tabs' %}
 
+			<div class="col-lg-12">
+
+				<ul id="myTab" class="nav nav-tabs nav-justified">
+					{% assign theclass = 'active' %}
+					{% for navitem in site.data.navigation %}
+						{% if navitem.servicepage == true %}
+							<li class="{{ theclass }}"><a href="#{{ navitem.title | slugify }}" data-toggle="tab"><i class="fa fa-{{ navitem.icon }}"></i> {{ navitem.title }}</a></li>
+							{% assign theclass = '' %}
+						{% endif %}
+					{% endfor %}
+				</ul>
+
+				<div id="myTabContent" class="tab-content">
+					{% assign theclass = 'active' %}
+					{% for navitem in site.data.navigation %}
+						{% if navitem.servicepage == true %}
+							<div class="tab-pane fade {{ theclass }} in" id="{{ navitem.title | slugify }}">
+								<h4>{{ navitem.title }}</h4>
+								{{ navitem.description | markdownify }}
+								<p><a href="{{ navitem.href | prepend: site.baseurl }}">{{ site.data.i18n.locales[site.locale].continue }}</a></p>
+							</div>
+							{% assign theclass = '' %}
+						{% endif %}
+					{% endfor %}
+				</div>
+
+			</div>
 
 		{% when 'list' %}
 
