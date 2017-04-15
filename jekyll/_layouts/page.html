@@ -22,16 +22,17 @@ layout: default
 		</div>
 	-->
 
-	{% include get_categories.html %}
-
-		<div class="well">
-			<h4>{{ site.data.i18n.locales[site.locale].categories }}</h4>
-			{% include categories.html %}
-		</div>
+		{% include categories_get.html %}
+		{% if categories.size > 0 %}
+			<div class="well">
+				<h4>{{ site.data.i18n.locales[site.locale].categories }}</h4>
+				{% include categories_out.html %}
+			</div>
+		{% endif %}
 
 		<div class="well">
 			<h4>{{ site.data.i18n.locales[site.locale].tags }}</h4>
-			{% include tags.html %}
+			{% include tags_out.html %}
 		</div>
 
 	</div>
