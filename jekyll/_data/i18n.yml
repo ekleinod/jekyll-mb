@@ -6,6 +6,8 @@ locales:
     header_image: "Image for"
     index: "Homepage"
     last_change: "Last change"
+    search: "Search"
+    search-placeholder: "search term"
     services: "Quick Guide"
     tags: "Tags"
     toc: "On this page"
@@ -22,6 +24,8 @@ locales:
     header_image: "Bild für"
     index: "Startseite"
     last_change: "Letzte Änderung"
+    search: "Suche"
+    search-placeholder: "Suchbegriff"
     services: "Schnelleinstieg"
     toc: "Auf dieser Seite"
   de_DE:
