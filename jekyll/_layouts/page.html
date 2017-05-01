@@ -13,12 +13,14 @@ layout: default
 			{% include search.html %}
 		</div>
 
-		{% include toc_pure_liquid.html html=content %}
-		{% if my_toc != '' %}
-			<div class="well">
-				<h4>{{ site.data.i18n.locales[site.locale].toc }}</h4>
-				{{ my_toc | markdownify }}
-			</div>
+		{% if page.hide-toc != true %}
+			{% include toc_pure_liquid.html html=content sanitize=true %}
+			{% if my_toc != '' %}
+				<div class="well">
+					<h4>{{ site.data.i18n.locales[site.locale].toc }}</h4>
+					{{ my_toc | markdownify }}
+				</div>
+			{% endif %}
 		{% endif %}
 
 		{% include categories_get.html %}
