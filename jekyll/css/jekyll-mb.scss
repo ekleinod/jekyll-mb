@@ -25,7 +25,24 @@
 
 @import "local_colors";
 
-$color_nav: blue !default;
+// color palettes
+
+$color-primary-0: #7399AA !default;	// Main Primary color */
+$color-primary-1: #EFF9FD !default;
+$color-primary-2: #B2D1DE !default;
+$color-primary-3: #3B6578 !default;
+$color-primary-4: #193947 !default;
+
+// logical colors
+$color_text: $color-primary-4;
+$color_background: $color-primary-1;
+$color_nav: $color-primary-1;
+$color_decoration: $color-primary-4;
+
+body {
+	color: $color_text;
+	background-color: $color_background;
+}
 
 #sidebar-menu a.list-group-item,
 #sidenav .list-group-item,
@@ -35,7 +52,7 @@ $color_nav: blue !default;
 .navbar .navbar-collapse .dropdown .dropdown-menu li a,
 .navbar .navbar-collapse li a{
 
-		color: #FFFFFF;
+		color: $color_nav;
 
 }
 
@@ -47,8 +64,8 @@ $color_nav: blue !default;
 .sidebar .sidebar-content .sidebar-toggle,
 .navbar .navbar-collapse .open.dropdown{
 
-		background-color: $color_nav;
-		border-color: #e10a17;
+		background-color: $color_decoration;
+		border-color: $color_decoration;
 
 }
 
