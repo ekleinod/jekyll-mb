@@ -4,7 +4,7 @@ layout: page
 
 {{ content }}
 
-{% include tags.html columns=true %}
+{% include tags_get.html columns=true %}
 
 {% for tag in tags %}
 	<h2 id="{{ tag | slugify }}">{{ tag }}</h2>

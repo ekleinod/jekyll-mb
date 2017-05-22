@@ -4,7 +4,7 @@ layout: page
 
 {{ content }}
 
-{% include categories.html columns=true %}
+{% include categories_get.html columns=true %}
 
 {% for category in categories %}
 	<h2 id="{{ category | slugify }}">{{ category }}</h2>
