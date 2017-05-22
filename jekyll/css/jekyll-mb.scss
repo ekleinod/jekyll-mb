@@ -23,7 +23,9 @@
 # along with jekyll-mb.  If not, see <http://www.gnu.org/licenses/>.
 ---
 
-$color_nav: blue;
+@import "local_colors";
+
+$color_nav: blue !default;
 
 #sidebar-menu a.list-group-item,
 #sidenav .list-group-item,
@@ -322,5 +324,7 @@ iframe.osm {
 		}
 
 }
+
+@import "local";
 
 /* EOF */
