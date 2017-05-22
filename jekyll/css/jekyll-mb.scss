@@ -23,6 +23,8 @@
 # along with jekyll-mb.  If not, see <http://www.gnu.org/licenses/>.
 ---
 
+$color_nav: blue;
+
 #sidebar-menu a.list-group-item,
 #sidenav .list-group-item,
 #sidenav .list-group-header,
@@ -43,7 +45,7 @@
 .sidebar .sidebar-content .sidebar-toggle,
 .navbar .navbar-collapse .open.dropdown{
 
-		background-color: #e10a17;
+		background-color: $color_nav;
 		border-color: #e10a17;
 
 }
