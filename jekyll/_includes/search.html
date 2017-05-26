@@ -1,10 +1,10 @@
 <div>
-	<form class="form-horizontal" role="form" action="https://www.startpage.com/do/search" id="sitesearch" method="post" accept-charset="utf-8">
+	<form class="form-horizontal" role="form" action="suche.html" id="sitesearch" method="get" accept-charset="utf-8">
 		<div class="input-group">
 			<input type="hidden" name="query" />
 			<input type="hidden" name="language" value="deutsch" />
 			<input type="hidden" name="host" value="{{ site.url | append: site.baseurl }}" />
-			<input type="text" name="keyword" class="form-control" placeholder="{{ site.data.i18n.locales[site.locale].search-placeholder }}" />
+			<input type="text" name="query" class="form-control" placeholder="{{ site.data.i18n.locales[site.locale].search-placeholder }}" />
 			<span class="input-group-btn">
 				<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
 			</span>
