@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<div class="row">
+	<div class="col-lg-12">
+		{{ content }}
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="col-lg-12">
+		{% include search.html %}
+	</div>
+
+	<div class="col-lg-12">
+		<ul id="search-results"></ul>
+	</div>
+
+</div>
+
+<script>
+	window.store = {
+	{% for post in site.pages %}
+		"{{ post.url | slugify }}": {
+		"title": "{{ post.title | xml_escape }}",
+		"author": "{{ post.author | xml_escape }}",
+		"category": "{{ post.category | xml_escape }}",
+		"content": {{ post.content | strip_html | strip_newlines | jsonify }},
+		"url": "{{ post.url | xml_escape }}"
+		}
+		{% unless forloop.last %},{% endunless %}
+	{% endfor %}
+	};
+</script>
+
+<!-- Lunr search engine -->
+<script src="{{ '/js/lunr-2.0.4.js' | prepend: site.baseurl }}"></script>
+
+<!-- Search code -->
+<script src="{{ '/js/search.js' | prepend: site.baseurl }}"></script>
