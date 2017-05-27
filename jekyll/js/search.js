@@ -29,7 +29,8 @@
 					this.field('category');
 					this.field('content');
 
-					for (var key in window.store) { // Add the data to lunr
+					// Add the data to lunr
+					for (var key in window.store) {
 						this.add({
 							'id': key,
 							'title': window.store[key].title,
@@ -41,8 +42,9 @@
 
 				});
 
-				var results = idx.search(searchTerm); // Get lunr to perform a search
-				displaySearchResults(results, window.store); // We'll write this in the next section
+				// Get lunr to perform a search, searh with wildcards
+				var results = idx.search('*' + searchTerm + '*');
+				displaySearchResults(results, window.store);
 
 			}
 
@@ -52,10 +54,10 @@
 	function displaySearchResults(results, store) {
 		var searchResults = document.getElementById('search-results');
 
-		if (results.length) { // Are there any results?
+		if (results.length) {
 			var appendString = '';
 
-			for (var i = 0; i < results.length; i++) {  // Iterate over the results
+			for (var i = 0; i < results.length; i++) {
 				var item = store[results[i].ref];
 				appendString += '<li><a href="' + item.url + '"><h3>' + item.title + '</h3></a>';
 				appendString += '<p>' + item.content.substring(0, 150) + '...</p></li>';
