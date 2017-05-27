@@ -59,8 +59,11 @@
 
 			for (var i = 0; i < results.length; i++) {
 				var item = store[results[i].ref];
-				appendString += '<li><a href="' + item.url + '"><h3>' + item.title + '</h3></a>';
-				appendString += '<p>' + item.content.substring(0, 150) + '...</p></li>';
+
+				appendString += '<a href="' + item.url + '" class="list-group-item">';
+				appendString += '<h4 class="list-group-item-heading">' + item.title + '</h4>';
+				appendString += '<p class="list-group-item-text">' + item.content.substring(0, 150) + '...</p>';
+				appendString += '</a>';
 			}
 
 			searchResults.innerHTML = appendString;
