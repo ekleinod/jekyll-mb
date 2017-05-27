@@ -7,7 +7,7 @@
  */
 (function() {
 
-//	executeSearch();
+	executeSearch();
 
 	function executeSearch() {
 		var searchTerm = getQueryVariable('searchterm');
