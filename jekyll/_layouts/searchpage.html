@@ -48,6 +48,20 @@ layout: default
 			{% unless forloop.last %},{% endunless %}
 		{% endunless %}
 	{% endfor %}
+	{% if site.posts %},{% endif %}
+	{% for post in site.posts %}
+		{% assign extension = post.url | slice: -5, 5 %}
+		{% unless extension != '.html' or to_ignore contains post.url %}
+			"{{ post.url | slugify }}": {
+			"title": "{{ post.title | xml_escape }}",
+			"author": "{{ post.author | xml_escape }}",
+			"category": "{{ post.category | xml_escape }}",
+			"content": {{ post.content | strip_html | strip_newlines | jsonify }},
+			"url": "{{ post.url | xml_escape | prepend: site.baseurl }}"
+			}
+			{% unless forloop.last %},{% endunless %}
+		{% endunless %}
+	{% endfor %}
 	};
 </script>
 
