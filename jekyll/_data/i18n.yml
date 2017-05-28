@@ -8,6 +8,8 @@ locales:
     last_change: "Last change"
     search: "Search"
     search-placeholder: "search term"
+    search-results: "Search results"
+    search-results-none: "Found no results."
     services: "Quick Guide"
     tags: "Tags"
     toc: "On this page"
@@ -26,6 +28,8 @@ locales:
     last_change: "Letzte Änderung"
     search: "Suche"
     search-placeholder: "Suchbegriff"
+    search-results: "Suchergebnisse"
+    search-results-none: "Keine Suchergebnisse gefunden."
     services: "Schnelleinstieg"
     toc: "Auf dieser Seite"
   de_DE:
