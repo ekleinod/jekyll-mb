@@ -18,7 +18,7 @@
 				document.getElementById('search-box').setAttribute("value", searchTerm);
 			}
 
-			if (document.getElementById('search-results')) {
+			if (document.getElementById('search-result-panel')) {
 
 				// Initalize lunr with the fields it will be searching on. I've given title
 				// a boost of 10 to indicate matches on this field are more important.
@@ -48,11 +48,14 @@
 
 			}
 
+		} else {
+			if (document.getElementById('search-result-panel')) {
+				document.getElementById('search-result-panel').style.display = "none";
+			}
 		}
 	}
 
 	function displaySearchResults(results, store) {
-		var searchResults = document.getElementById('search-results');
 
 		if (results.length) {
 			var appendString = '';
@@ -66,9 +69,11 @@
 				appendString += '</a>';
 			}
 
-			searchResults.innerHTML = appendString;
+			document.getElementById('search-results').innerHTML = appendString;
+			document.getElementById('search-result-none').style.display = "none";
+
 		} else {
-			searchResults.innerHTML = '<li>No results found</li>';
+			document.getElementById('search-results').style.display = "none";
 		}
 	}
 
