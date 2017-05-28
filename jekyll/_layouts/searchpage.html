@@ -34,34 +34,30 @@ layout: default
 	{% endif %}
 	{% assign to_ignore = ignore_files | split: ',' %}
 
-	window.store = {
+	{% assign pages = '' | split: '' %}
+
 	{% for page in site.pages %}
 		{% assign extension = page.url | slice: -5, 5 %}
 		{% unless extension != '.html' or to_ignore contains page.url %}
+			{% assign pages = pages | push: page %}
+		{% endunless %}
+	{% endfor %}
+	{% for page in site.posts %}
+		{% assign extension = page.url | slice: -5, 5 %}
+		{% unless extension != '.html' or to_ignore contains page.url %}
+			{% assign pages = pages | push: page %}
+		{% endunless %}
+	{% endfor %}
+
+	window.store = {
+		{% for page in pages %}
 			"{{ page.url | slugify }}": {
-			"title": "{{ page.title | xml_escape }}",
-			"author": "{{ page.author | xml_escape }}",
-			"category": "{{ page.category | xml_escape }}",
-			"content": {{ page.content | strip_html | strip_newlines | jsonify }},
-			"url": "{{ page.url | xml_escape | prepend: site.baseurl }}"
+				"title": "{{ page.title | xml_escape }}",
+				"content": {{ page.content | strip_html | strip_newlines | jsonify }},
+				"url": "{{ page.url | xml_escape | prepend: site.baseurl }}"
 			}
 			{% unless forloop.last %},{% endunless %}
-		{% endunless %}
-	{% endfor %}
-	{% if site.posts %},{% endif %}
-	{% for post in site.posts %}
-		{% assign extension = post.url | slice: -5, 5 %}
-		{% unless extension != '.html' or to_ignore contains post.url %}
-			"{{ post.url | slugify }}": {
-			"title": "{{ post.title | xml_escape }}",
-			"author": "{{ post.author | xml_escape }}",
-			"category": "{{ post.category | xml_escape }}",
-			"content": {{ post.content | strip_html | strip_newlines | jsonify }},
-			"url": "{{ post.url | xml_escape | prepend: site.baseurl }}"
-			}
-			{% unless forloop.last %},{% endunless %}
-		{% endunless %}
-	{% endfor %}
+		{% endfor %}
 	};
 </script>
 
