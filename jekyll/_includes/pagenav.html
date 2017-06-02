@@ -7,6 +7,44 @@
 
 {% endcomment %}
 
+{% assign subdir = include.subdir | default: '' %}
+{% assign subdirpath = subdir | split: '/' %}
+
+{% assign subdir_test = subdir | prepend: '#' %}
+{% assign pages = '' | split: '' %}
+{% for page in site.pages | sort: 'url' %}
+	{% assign pageurl = page.url | prepend: '#' %}
+	{% if page.hide-nav != true and pageurl contains subdir %}
+		{% assign pages = pages | push: page %}
+	{% endif %}
+{% endfor %}
+
+{% if pages.size > 0 %}
+
+<div class="alert alert-warning" role="alert"><small>Die Hierarchien sind noch nicht korrekt, aber wenigstens sind alle Seiten zu sehen.</small></div>
+
+<ul>
+	{% assign currentlevel = subdirpath.size %}
+	{% for page in pages %}
+		{% assign pagepath = page.url | split: '/' %}
+<li>current level: {{currentlevel}}</li>
+<li>this level: {{pagepath.size | minus: 1}}</li>
+<li><a href="{{ page.url | prepend: site.baseurl  }}">{{ page.title }}</a></li>
+	{% endfor %}
+</ul>
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+{% assign pages_sorted = site.pages | sort: 'url' %}
+
 {% comment %}
 	Generate subdir array for comparison of paths.
 {% endcomment %}
@@ -15,8 +53,6 @@
 {% comment %}
 	Sort pages by url.
 {% endcomment %}
-{% assign pages_sorted = site.pages | sort: 'url' %}
-
 {% comment %}
 	Store pages for output.
 	There is no "startswith" in Liquid, "contains" could find url chunks within the url.
