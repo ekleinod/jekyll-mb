@@ -8,106 +8,123 @@
 {% endcomment %}
 
 {% assign subdir = include.subdir | default: '/index.html' %}
-{% assign subdirpath = subdir | prepend: '#' | split: '/' | pop | join: '/' %}
+
+{% assign subdirarray = subdir | prepend: '#' | split: '/' | pop %}
+{% assign subdirpath = subdirarray | join: '/' %}
 
 
 {% assign pages = '' | split: '' %}
 {% for page in site.pages | sort: 'url' %}
-	{% assign pageurlpath = page.url | prepend: '#' | split: '/' | pop | join: '/' %}
-	{% if page.hide-nav != true and pageurlpath contains subdirpath %}
-		{% assign pages = pages | push: page %}
+	{% assign pagecontent = '' | split: '' %}
+
+	{% assign pagearray = page.url | prepend: '#' | split: '/' | pop %}
+	{% assign pagepath = pagearray | join: '/' %}
+
+	{% if page.hide-nav != true and pagepath contains subdirpath %}
+
+		{% assign pagecontent = pagecontent | push: pagearray %}
+		{% assign pagecontent = pagecontent | push: pagepath %}
+		{% assign pagecontent = pagecontent | push: page.url %}
+		{% assign pagecontent = pagecontent | push: page.title %}
+
+		{% assign pages = pages | push: pagecontent %}
+
 	{% endif %}
 {% endfor %}
+
+{{pages.size}}
 
 {% if pages.size > 0 %}
 
-<div class="alert alert-warning" role="alert"><small>Die Hierarchien sind noch nicht korrekt, aber wenigstens sind alle Seiten zu sehen.</small></div>
+	{% assign currentarray = subdirarray %}
+	{% assign currentpath = subdirpath %}
 
 <ul>
-	{% assign currentlevel = subdirpath.size %}
+
 	{% for page in pages %}
-		{% assign pagepath = page.url | split: '/' %}
-<li>current level: {{currentlevel}}</li>
-<li>this level: {{pagepath.size | minus: 1}}</li>
-<li><a href="{{ page.url | prepend: site.baseurl  }}">{{ page.title }}</a></li>
-	{% endfor %}
-</ul>
 
-{% endif %}
+		{% if page[1] contains currentpath %}
 
+			{% if currentarray.size == page[0].size %}
 
+<li><a href="{{ page[2] | prepend: site.baseurl  }}">{{ page[3] }}</a></li>
 
+			{% elsif currentarray.size < page[0].size %}
 
+				{% assign leveldiff = page[0].size | minus: currentarray.size %}
 
+				{% for level in (1..leveldiff) %}
 
-
-
-
-{% assign pages_sorted = site.pages | sort: 'url' %}
-
-{% comment %}
-	Generate subdir array for comparison of paths.
-{% endcomment %}
-{% assign subdir = include.subdir | prepend: '/' %}
-
-{% comment %}
-	Sort pages by url.
-{% endcomment %}
-{% comment %}
-	Store pages for output.
-	There is no "startswith" in Liquid, "contains" could find url chunks within the url.
-	Therefore, for comparison we prepend the url and the subdir with "/", because no "//" should occur within an url.
-{% endcomment %}
-{% assign pages_out = '' | split: '' %}
-{% for page in pages_sorted %}
-	{% assign testurl = page.url | prepend: '/' %}
-	{% if page.hide-nav != true and testurl contains subdir %}
-		{% assign pages_out = pages_out | push: page %}
-	{% endif %}
-{% endfor %}
-
-{% comment %}
-	Start ul if there are pages for output.
-{% endcomment %}
-{% if pages_out.size > 0 %}
-
-<div class="alert alert-warning" role="alert"><small>Die Hierarchien sind noch nicht korrekt, aber wenigstens sind alle Seiten zu sehen.</small></div>
-
+<li>
 <ul>
-	{% comment %}
-		Some variables for correct indentation.
-	{% endcomment %}
-	{% assign level = 0 %}
 
-	{% comment %}
-		Loop through output pages.
-	{% endcomment %}
-	{% for page in pages_out %}
-		{% assign testurl = page.url | prepend: '/' %}
-
-		{% if testurl contains subdir %}
-<li><a href="{{ page.url | prepend: site.baseurl  }}">{{ page.title }}</a></li>
-			{% if testurl contains '.html' %}
-			{% else %}
-<ul>
-				{% assign subdir = testurl %}
-				{% assign level = level | plus: 1 %}
-				{% comment %}{{ level }}{% endcomment %}
-			{% endif %}
-		{% else %}
-			{% assign tmpsubdir = subdir %}
-			{% assign tmplevel = level %}
-			{% for i in (1..tmplevel) reversed %}
-				{% assign arr_tmpsubdir = tmpsubdir | split: '/' %}
-				{% for url_part in arr_tmpsubdir %}
-					{% comment %}{{url_part}}{% endcomment %}
 				{% endfor %}
-			{% endfor %}
-<li><a href="{{ page.url | prepend: site.baseurl  }}">{{ page.title }}</a></li>
+
+<li><a href="{{ page[2] | prepend: site.baseurl  }}">{{ page[3] }}</a></li>
+
+				{% assign currentarray = page[0] %}
+				{% assign currentpath = page[1] %}
+
+			{% elsif currentarray.size > page[0].size %}
+
+				{% assign leveldiff = currentarray.size | minus: page[0].size %}
+
+				{% for level in (1..leveldiff) %}
+
+</ul>
+</li>
+
+				{% endfor %}
+
+<li><a href="{{ page[2] | prepend: site.baseurl  }}">{{ page[3] }}</a></li>
+
+				{% assign currentarray = page[0] %}
+				{% assign currentpath = page[1] %}
+
+			{% endif %}
+
+		{% else %}
+
+				{% for level in (1..page[0].size) %}
+
+</ul>
+</li>
+
+					{% assign currentarray = currentarray | pop %}
+					{% assign currentpath = currentarray | join: '/' %}
+
+					{% if page[1] contains currentpath %}
+						{% break %}
+					{% endif %}
+
+				{% endfor %}
+
+				{% assign leveldiff = page[0].size | minus: currentarray.size %}
+
+				{% for level in (1..leveldiff) %}
+
+<li>
+<ul>
+
+				{% endfor %}
+
+<li><a href="{{ page[2] | prepend: site.baseurl  }}">{{ page[3] }}</a></li>
+
+				{% assign currentarray = page[0] %}
+				{% assign currentpath = page[1] %}
+
 		{% endif %}
+
+	{% endfor %}
+
+	{% assign leveldiff = currentarray.size | minus: 1 %}
+	{% for level in (1..leveldiff) %}
+
+</ul>
+</li>
+
 	{% endfor %}
 
 </ul>
 
 {% endif %}
-
