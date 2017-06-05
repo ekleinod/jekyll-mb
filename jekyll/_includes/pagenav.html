@@ -7,14 +7,14 @@
 
 {% endcomment %}
 
-{% assign subdir = include.subdir | default: '' %}
-{% assign subdirpath = subdir | split: '/' %}
+{% assign subdir = include.subdir | default: '/index.html' %}
+{% assign subdirpath = subdir | prepend: '#' | split: '/' | pop | join: '/' %}
 
-{% assign subdir_test = subdir | prepend: '#' %}
+
 {% assign pages = '' | split: '' %}
 {% for page in site.pages | sort: 'url' %}
-	{% assign pageurl = page.url | prepend: '#' %}
-	{% if page.hide-nav != true and pageurl contains subdir %}
+	{% assign pageurlpath = page.url | prepend: '#' | split: '/' | pop | join: '/' %}
+	{% if page.hide-nav != true and pageurlpath contains subdirpath %}
 		{% assign pages = pages | push: page %}
 	{% endif %}
 {% endfor %}
