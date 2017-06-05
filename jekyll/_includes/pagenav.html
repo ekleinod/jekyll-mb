@@ -17,6 +17,7 @@
 {% for page in site.pages | sort: 'url' %}
 	{% assign pagecontent = '' | split: '' %}
 
+	{% assign pagefilename = page.url | prepend: '#' | split: '/' | last %}
 	{% assign pagearray = page.url | prepend: '#' | split: '/' | pop %}
 	{% assign pagepath = pagearray | join: '/' %}
 
@@ -26,13 +27,43 @@
 		{% assign pagecontent = pagecontent | push: pagepath %}
 		{% assign pagecontent = pagecontent | push: page.url %}
 		{% assign pagecontent = pagecontent | push: page.title %}
+		{% assign pagecontent = pagecontent | push: pagefilename %}
 
 		{% assign pages = pages | push: pagecontent %}
 
 	{% endif %}
 {% endfor %}
 
+{% comment %}
+{% assign pages_sorted = '' | split: '' %}
+
+{% assign currentpath = subdirpath %}
+
+{% for page in pages %}
+
+	{% unless page[1] contains currentpath %}
+		{% for indexpage in pages %}
+			{% if page[1] == indexpage[1] and indexpage[4] == 'index.html' %}
+				{% assign pages_sorted = pages_sorted | push: indexpage %}
+			{% endif %}
+		{% endfor %}
+	{% endunless %}
+
+	{% if page[4] != 'index.html' %}
+		{% assign pages_sorted = pages_sorted | push: page %}
+	{% endif %}
+
+	{% assign currentpath = page[1] %}
+
+{% endfor %}
+
+{{pages_sorted.size}}
+
+{% for page in pages_sorted %}- {{page[2]}} - {{page[4]}}
+{% endfor %}
+
 {{pages.size}}
+{% endcomment %}
 
 {% if pages.size > 0 %}
 
@@ -55,7 +86,7 @@
 
 				{% for level in (1..leveldiff) %}
 
-<li>
+<li>{{ page[3] }}
 <ul>
 
 				{% endfor %}
@@ -103,7 +134,7 @@
 
 				{% for level in (1..leveldiff) %}
 
-<li>
+<li>{{ page[3] }}
 <ul>
 
 				{% endfor %}
