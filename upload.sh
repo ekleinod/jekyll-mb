@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # usage:
-USAGE='usage: upload <url> <username> <password> [<basefolder>]'
+USAGE='usage: upload <url> <username> <password> [<basefolder>] [<subdir>]'
+
+# basefolder default: htdocs
+# subdir default: <empty>
 
 # Copyright 2016-2017 Ekkart Kleinod <ekleinod@edgesoft.de>
 
@@ -52,7 +55,10 @@ fi
 # use param or default basefolder
 BASEFOLDER=${4:-"htdocs"}
 
+# use param or default basefolder
+SUBDIR=${5:-""}
+
 # upload all files
-wput --timestamping --dont-continue --reupload $BASEFOLDER/* --basename=$BASEFOLDER/ ftp://$2:$3@$1/$BASEFOLDER/
+wput --timestamping --dont-continue --reupload $BASEFOLDER/* --basename=$BASEFOLDER/ ftp://$2:$3@$1/$BASEFOLDER/$SUBDIR
 
 # EOF
