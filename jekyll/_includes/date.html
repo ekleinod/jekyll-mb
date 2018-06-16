@@ -4,7 +4,7 @@
 
 	usage (style parameter is optional)
 
-	{% include date.html date='<date>' style='<long|full>' %}
+	{% include date.html date='<date>' style='<long|full|short|month_year>' %}
 
 {% endcomment %}
 
@@ -62,6 +62,10 @@
 		{% assign date_out = date_out | append: temp %}
 	{% when 'short' %}
 		{% assign date_out = include.date | date: '%-d.%-m.%Y' %}
+	{% when 'month_year' %}
+		{% assign date_out = month %}
+		{% assign temp = include.date | date: ' %Y' %}
+		{% assign date_out = date_out | append: temp %}
 	{% else %}
 		{% assign date_out = 'unbekanntes Datumformat: ' | append: dl_style %}
 {% endcase %}
