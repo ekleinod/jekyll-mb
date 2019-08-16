@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # usage:
-USAGE='usage: upload <url> <username> <password> [<basefolder>] [<subdir>]'
+USAGE='usage: upload <url> <username> <password> [<subdir>] [<basefolder>]'
 
 # basefolder default: htdocs
 # subdir default: <empty>
@@ -34,6 +34,7 @@ then
 	echo $USAGE
 	exit 1
 fi
+URL=$1
 
 # username
 if [ -z "$2" ]
@@ -42,6 +43,7 @@ then
 	echo $USAGE
 	exit 1
 fi
+USERNAME=$2
 
 # password
 if [ -z "$3" ]
@@ -50,15 +52,15 @@ then
 	echo $USAGE
 	exit 1
 fi
+PWD=$3
 
+# use param or default subdir
+SUBDIR=${4:-""}
 
 # use param or default basefolder
-BASEFOLDER=${4:-"htdocs"}
-
-# use param or default basefolder
-SUBDIR=${5:-""}
+BASEFOLDER=${5:-"htdocs"}
 
 # upload all files
-wput --timestamping --dont-continue --reupload $BASEFOLDER/* --basename=$BASEFOLDER/ ftp://$2:$3@$1/$BASEFOLDER/$SUBDIR
+wput --timestamping --dont-continue --reupload $BASEFOLDER/* --basename=$BASEFOLDER/ ftp://$USERNAME:$PWD@$URL/$SUBDIR/
 
 # EOF
