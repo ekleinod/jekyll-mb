@@ -255,6 +255,12 @@ iframe.osm {
 
 }
 
+@media print {
+	.no-print, .no-print * {
+		display: none !important;
+	}
+}
+
 @import "local";
 
 /* EOF */
